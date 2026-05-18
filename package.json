@@ -1,0 +1,51 @@
+{
+  "name": "fresh-fuel-poke",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:seed": "pnpm exec tsx src/db/seed.ts",
+    "db:seed:users": "pnpm exec tsx src/db/seeds/seed-users.ts",
+    "db:seed:info": "pnpm exec tsx src/db/seeds/seed-restaurant-info.ts",
+    "db:seed:hours": "pnpm exec tsx src/db/seeds/seed-hours.ts",
+    "db:seed:testimonials": "pnpm exec tsx src/db/seeds/seed-testimonials.ts",
+    "db:seed:slides": "pnpm exec tsx src/db/seeds/seed-hero-slides.ts",
+    "db:seed:menu": "pnpm exec tsx src/db/seeds/seed-menu.ts",
+    "db:seed:dine": "pnpm exec tsx src/db/seeds/seed-dine.ts",
+    "db:seed:all": "pnpm db:seed:users && pnpm db:seed:info && pnpm db:seed:hours && pnpm db:seed:testimonials && pnpm db:seed:slides && pnpm db:seed:menu && pnpm db:seed:dine"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.17.3",
+    "@uploadthing/react": "^7.3.3",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "uploadthing": "^7.7.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "drizzle-kit": "^0.31.10",
+    "tailwindcss": "^4",
+    "tsx": "^4.20.6",
+    "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.14",
+      "@types/react-dom": "19.2.3"
+    }
+  }
+}

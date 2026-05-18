@@ -1,0 +1,261 @@
+{
+  "restaurantInfo": {
+    "name": "Fresh Fuel Poke",
+    "tagline": "Bright bowls, clean ingredients, and feel-good energy from lunch through late dinner.",
+    "shortTagline": "Fresh bowls for quick lunches, date nights, and easy group orders.",
+    "logo": "https://utfs.io/f/f5g7m1aw2QJCgCoPyoSS1ZM6heBKXGLoisvOtNyTVEqmYaIl",
+    "story": "Fresh Fuel Poke was born from a simple idea that fast food does not have to be junk food. We saw a world of people on the go, striving to be their best but lacking access to meals that were both convenient and genuinely nourishing. We bridge that gap by bringing the vibrant, fresh flavor of the Pacific to the heart of the city, offering a fuel stop for modern life. Our aim is to make vibrant, nutrient-dense food the most accessible, appealing, and exciting choice for modern, active lifestyles.",
+    "storyImage1": "https://utfs.io/f/f5g7m1aw2QJCEsIlDoPXnrovSTHNymhD2U3OM0ksgPKYRwlB",
+    "storyImage1Title": "Precision Prep",
+    "storyImage1Description": "Ingredients are carefully weighed to guarantee perfect nutritional balance.",
+    "storyImage2": "https://utfs.io/f/f5g7m1aw2QJC1wJKCO9uMX2P4g7DIHFtn6oSr5iKacQL9sAU",
+    "storyImage2Title": "Expert Cuts",
+    "storyImage2Description": "Sized and sliced with intention to deliver the ultimate texture in every bite.",
+    "storyImage3": "https://utfs.io/f/f5g7m1aw2QJCjqHXJsBbTSnFY5zXyxbNq4m0MdjwVUZIcuQ7",
+    "storyImage3Title": "Peak Freshness",
+    "storyImage3Description": "Preserved and stored in optimal conditions so every bowl stays crisp and bold.",
+    "location": "Wanchai, Hong Kong",
+    "addressLine": "G/F, 19 Amoy Street, Wanchai, Hong Kong",
+    "phone": "+85223456786",
+    "whatsApp": "+85256746533",
+    "contactEmail": "freshfuelpokewebsite@gmail.com",
+    "ctaPrimary": "Reserve Table",
+    "ctaSecondary": "View Menu",
+    "serviceHeaderDescription": "Fresh Fuel poke is more than poke—it's functional foods are real energy. We provide dine-in service and takeaway service in our restaurants. We built our bowls around human nutrient needs, using fresh, healthy ingredients for better energy every day. After months of research and careful pairing, we got each bowl with unique purpose—shown clearly on the bowl label.",
+    "serviceDineInDescription": "Enjoy a comfortable dine-in experience with freshly prepared meals, attentive service, and a welcoming atmosphere. Browse our menu, reserve a table, and visit us for lunch or dinner. Our staff will serve you in a very hospitable environment.\n\nPlease call or whatsapp us prior to your arrival for general booking to serve you at our best.",
+    "serviceTakeAwayDescription": "We offers fresh, customizable poke bowls with convenient delivery and pickup options. Customers can order online, or call us via directly or message on Whatsapp and choose from a variety of proteins, toppings, and sauces, and enjoy healthy Asian-inspired meals prepared for takeaway.",
+    "serviceImage2": "https://utfs.io/f/f5g7m1aw2QJC3EFG0Xrfem7CW5LRQNjoG6Bin2DcHtpsZvM1",
+    "serviceImage3": "https://utfs.io/f/f5g7m1aw2QJCsmvMX72kxyvebY2ORsBtZpE8izq6unHm1jhP"
+  },
+  "hours": [
+    { "label": "Mon – Fri", "value": "11:00 am – 9:30 pm" },
+    { "label": "Sat", "value": "10:30 am – 10:00 pm" },
+    { "label": "Sun", "value": "10:30 am – 9:00 pm" }
+  ],
+  "testimonials": [
+    {
+      "quote": "The bowls feel fresh and generous without being heavy. It is the kind of place you can revisit every week.",
+      "name": "Mia L.",
+      "context": "Regular lunch guest"
+    },
+    {
+      "quote": "Great for quick dinners and group orders. The flavors stay bright even when we order delivery.",
+      "name": "Arjun K.",
+      "context": "Evening takeaway customer"
+    },
+    {
+      "quote": "Clean food, strong portions, and a menu that actually feels considered. We keep coming back for Bliss.",
+      "name": "Sophie W.",
+      "context": "Weekend diner"
+    }
+  ],
+  "heroSlides": [
+    {
+      "src": "https://utfs.io/f/f5g7m1aw2QJCdImS4sUXQ2g4zFsNfvVYqxiHanuLb8ZTktmB",
+      "alt": "Fresh Fuel Poke restaurant spread",
+      "label": "Signature Dishes",
+      "titleLine1": "Signature",
+      "titleLine2": "Bowls",
+      "accent": "made fresh.",
+      "description": "Our most-loved bowls, built to order with vibrant toppings and house sauces."
+    },
+    {
+      "src": "https://utfs.io/f/f5g7m1aw2QJC9dk2C2XYjgaZBPVG48XwnAtOd2vRJ9Wzom5f",
+      "alt": "Fresh Fuel Poke preparation scene",
+      "label": "Fresh energy",
+      "titleLine1": "Purely",
+      "titleLine2": "Balanced",
+      "accent": "Eat well every day.",
+      "description": "Crisp veg, clean proteins, and bright sauces prepped fast so your bowl stays bold."
+    },
+    {
+      "src": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU",
+      "alt": "Fresh ingredients being prepared",
+      "label": "Fresh prep",
+      "titleLine1": "Bright",
+      "titleLine2": "Ingredients",
+      "accent": "real taste.",
+      "description": "Color, crunch, and balance from simple ingredients that still feel generous."
+    }
+  ],
+  "menuCategories": [
+    {
+      "title": "Signature Bowls",
+      "note": "House bowls built for balance.",
+      "isDineIn": true,
+      "items": [
+        {
+          "name": "Bliss",
+          "price": "98",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCHcKB1rgaPSjbgwLZMdvhyz268nAmXYVBErlo"
+        },
+        {
+          "name": "Neuro Fuel",
+          "price": "98",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCdJ4NH9TUXQ2g4zFsNfvVYqxiHanuLb8ZTktm"
+        },
+        {
+          "name": "Low Calories",
+          "price": "98",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1iGUTW9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Immunity Booster",
+          "price": "98",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC9u5l78XYjgaZBPVG48XwnAtOd2vRJ9Wzom5f"
+        },
+        {
+          "name": "Gut Guardian",
+          "price": "98",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC5lVbkxzeyYWf6m0OvIax7QAGc5tUgrqRh3w1"
+        },
+        {
+          "name": "Cardio Crunch",
+          "price": "108",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCpVXthYKvmhIOVdTq9Hg7F10spSPvaZ2UeKAo"
+        },
+        {
+          "name": "Muscle Recovery",
+          "price": "98",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCYcR6bH1EvDfeMyxaCKdpFl2uRb5jWcBJNGAT"
+        },
+        {
+          "name": "Fuel Up Energy",
+          "price": "108",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCRldEU8Q5meEpF1ha2V3juf74twPWUrMnYGJd"
+        }
+      ]
+    },
+    {
+      "title": "Add On Side Dish",
+      "note": "Extra protein, fresh mix-ins, and classic sides.",
+      "isDineIn": true,
+      "items": [
+        {
+          "name": "Salmon Fillet",
+          "price": "68",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCBsXuYzxv0Uion2XTsYp86xIZAqrGjhE9bdlk"
+        },
+        {
+          "name": "Chicken Breast",
+          "price": "58",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC91eigaXYjgaZBPVG48XwnAtOd2vRJ9Wzom5f"
+        },
+        {
+          "name": "Tofu",
+          "price": "38",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCMBBkk7Bc5UcXDiTvp2R3zVZ4lhyt7bQAfFg1"
+        },
+        {
+          "name": "Kimchi",
+          "price": "38",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCtubTyoY8NsfMLa4ETYtdhP1rUD9wXGzKymAc"
+        },
+        {
+          "name": "Avocado",
+          "price": "28",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCiaR1UXypa83G1Pz5A2iBmgxMkfHJQdwvSsn4"
+        },
+        {
+          "name": "Apple & Pineapple Mix",
+          "price": "18",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCb8I1yETlyRnQJX7E16C0jWPBYpLqHUdaGKrf"
+        }
+      ]
+    },
+    {
+      "title": "Sauce Options",
+      "note": "Our house-made dressings.",
+      "isDineIn": true,
+      "items": [
+        {
+          "name": "Honey Lime",
+          "price": "12",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC9rNwepXYjgaZBPVG48XwnAtOd2vRJ9Wzom5f"
+        },
+        {
+          "name": "Ginger Miso",
+          "price": "12",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCO2BS9CGmUHbqatNvClAcrwigzPS4JQexo3E5"
+        },
+        {
+          "name": "Ponzu Tajin",
+          "price": "12",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC0r1egI6jpDXZOHmbCsiu25MafRVLShNK7vWx"
+        },
+        {
+          "name": "Turmeric Coco",
+          "price": "12",
+          "image": "https://utfs.io/f/f5g7m1aw2QJCifJ7sOypa83G1Pz5A2iBmgxMkfHJQdwvSsn4"
+        }
+      ]
+    },
+    {
+      "title": "Drinks",
+      "note": "Fresh mixes and house blends.",
+      "isDineIn": true,
+      "items": [
+        {
+          "name": "FFP Classic",
+          "price": "38",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Flora-Fuel",
+          "price": "38",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Re-Fuel",
+          "price": "38",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Matchaka Coconut",
+          "price": "38",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Cold Brew Coffee",
+          "price": "38",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Homemade Lemonade",
+          "price": "28",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Panna Still Water",
+          "price": "28",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Pellegrino Sparkling Water",
+          "price": "28",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Coconut Water",
+          "price": "28",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "12-8 Plum Soda",
+          "price": "45",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Kuppa Kombucha (Strawberry + Szechuan Pepper)",
+          "price": "45",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        },
+        {
+          "name": "Kuppa Kombucha (Mango Passionfruit)",
+          "price": "45",
+          "image": "https://utfs.io/f/f5g7m1aw2QJC1hjp5e9uMX2P4g7DIHFtn6oSr5iKacQL9sAU"
+        }
+      ]
+    }
+  ]
+}
