@@ -78,7 +78,6 @@ export function HeroCarousel({
 
       <div className="relative z-10 w-full px-8 pb-10 md:px-12 md:pb-16 lg:px-12">
         <div className="mx-auto flex w-full flex-col items-center justify-center gap-8 md:flex-row md:items-end md:gap-0">
-          
           {/* Main Layout Layer (Desktop) */}
           <div className="hidden w-full md:flex md:items-end">
             {/* Left Side: Content (Stretches to center) */}
@@ -98,13 +97,13 @@ export function HeroCarousel({
                       }`}
                     >
                       <h1 className="text-white text-left">
-                        <span 
+                        <span
                           className="block font-black uppercase leading-[0.86] tracking-[-0.05em]"
                           style={{ fontSize: "clamp(2rem, 4.5vw, 7.5rem)" }}
                         >
                           {slideTitle.join(" ")}
                         </span>
-                        <span 
+                        <span
                           className="mt-1 block font-serif italic font-light leading-[1.2] tracking-normal text-white/95"
                           style={{ fontSize: "clamp(1.1rem, 2.2vw, 3.8rem)" }}
                         >
@@ -119,7 +118,7 @@ export function HeroCarousel({
 
             {/* Center: Dots (Shrink-to-fit) */}
             <div className="flex shrink-0 items-center justify-center pb-10 lg:pb-14">
-               <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 {slides.map((slide, index) => (
                   <button
                     key={`dot-desktop-${slide.src}`}
@@ -182,10 +181,8 @@ export function HeroCarousel({
               ))}
             </div>
           </div>
-
         </div>
       </div>
-
     </section>
   );
 }

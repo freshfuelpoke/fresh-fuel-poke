@@ -12,7 +12,10 @@ export function ContactForm() {
     <form className="space-y-8" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-3">
-          <label htmlFor="firstName" className="block text-[15px] text-stone-800">
+          <label
+            htmlFor="firstName"
+            className="block text-[15px] text-stone-800"
+          >
             First Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -23,7 +26,10 @@ export function ContactForm() {
           />
         </div>
         <div className="space-y-3">
-          <label htmlFor="lastName" className="block text-[15px] text-stone-800">
+          <label
+            htmlFor="lastName"
+            className="block text-[15px] text-stone-800"
+          >
             Last Name
           </label>
           <input

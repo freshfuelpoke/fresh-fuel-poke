@@ -24,7 +24,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="h-full antialiased">
-      <RootLayoutBody restaurantInfo={restaurantInfo}>{children}</RootLayoutBody>
+      <RootLayoutBody restaurantInfo={restaurantInfo}>
+        {children}
+      </RootLayoutBody>
     </html>
   );
 }

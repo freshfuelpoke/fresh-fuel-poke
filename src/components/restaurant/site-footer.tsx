@@ -6,7 +6,7 @@ import { Reveal } from "./reveal";
 const footerLinks = [
   { label: "Home", href: "/" },
   { label: "Dine-in & Delivery", href: "/dine-in-delivery" },
-  { label: "Catering", href: "#" },
+  { label: "Catering", href: "/catering" },
   { label: "Contact Us", href: "/contact" },
 ] as const;
 
