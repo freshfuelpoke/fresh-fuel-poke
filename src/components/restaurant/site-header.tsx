@@ -4,7 +4,6 @@ import Link from "next/link";
 import { startTransition, useEffect, useEffectEvent, useState } from "react";
 import { RestaurantLogo } from "./common";
 import { type DishDetails, DishModal } from "./dish-modal";
-import { buildSignatureDishDetails } from "./signature-bowls";
 
 type MenuCategory = {
   readonly title: string;
@@ -13,6 +12,14 @@ type MenuCategory = {
     readonly name: string;
     readonly price: string;
     readonly image?: string | null;
+    readonly description?: string | null;
+    readonly ingredients?: string | null;
+    readonly calories?: string | null;
+    readonly protein?: string | null;
+    readonly fats?: string | null;
+    readonly carbs?: string | null;
+    readonly vitaminC?: string | null;
+    readonly tags?: string | null;
   }[];
 };
 
@@ -28,16 +35,10 @@ export function SiteHeader({
   const [selectedItem, setSelectedItem] = useState<DishDetails | null>(null);
 
   const handleItemClick = (
-    item: { name: string; price: string; image?: string | null },
+    item: MenuCategory["items"][number],
     _categoryTitle: string,
   ) => {
-    const signatureBowl = buildSignatureDishDetails(item);
-
-    if (signatureBowl) {
-      setSelectedItem(signatureBowl);
-      return;
-    }
-
+    const isSignature = _categoryTitle === "Signature Bowls";
     const image =
       item.image ||
       "https://utfs.io/f/f5g7m1aw2QJCpVXthYKvmhIOVdTq9Hg7F10spSPvaZ2UeKAo";
@@ -45,11 +46,21 @@ export function SiteHeader({
     setSelectedItem({
       name: item.name,
       image,
-      description: "",
-      ingredients: "",
+      description: item.description || "",
+      ingredients: item.ingredients || "",
       price: item.price,
-      isSignature: false,
+      isSignature,
       category: _categoryTitle === "Sauce Options" ? "sauce" : undefined,
+      nutrition:
+        item.calories || item.protein || item.fats || item.carbs || item.vitaminC
+          ? {
+              calories: item.calories || "",
+              protein: item.protein || "",
+              fats: item.fats || "",
+              carbs: item.carbs || "",
+              vitC: item.vitaminC || "",
+            }
+          : undefined,
     });
   };
 

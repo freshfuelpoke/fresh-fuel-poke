@@ -3,12 +3,19 @@
 import Image from "next/image";
 import { useState } from "react";
 import { type DishDetails, DishModal } from "./dish-modal";
-import { buildSignatureDishDetails } from "./signature-bowls";
 
 type MenuItem = {
   readonly name: string;
   readonly price?: string;
   readonly image?: string | null;
+  readonly description?: string | null;
+  readonly ingredients?: string | null;
+  readonly calories?: string | null;
+  readonly protein?: string | null;
+  readonly fats?: string | null;
+  readonly carbs?: string | null;
+  readonly vitaminC?: string | null;
+  readonly tags?: string | null;
 };
 
 type MenuCategory = {
@@ -25,17 +32,7 @@ export function WhatWeServe({
   const [selectedItem, setSelectedItem] = useState<DishDetails | null>(null);
 
   const handleItemClick = (item: MenuItem, categoryTitle: string) => {
-    const signatureBowl = buildSignatureDishDetails({
-      name: item.name,
-      price: item.price ?? "98",
-      image: item.image,
-    });
-
-    if (signatureBowl) {
-      setSelectedItem(signatureBowl);
-      return;
-    }
-
+    const isSignature = categoryTitle === "Signature Bowls";
     const image =
       item.image ||
       "https://utfs.io/f/f5g7m1aw2QJCpVXthYKvmhIOVdTq9Hg7F10spSPvaZ2UeKAo";
@@ -43,11 +40,21 @@ export function WhatWeServe({
     setSelectedItem({
       name: item.name,
       image,
-      description: "",
-      ingredients: "",
-      price: item.price,
-      isSignature: false,
+      description: item.description || "",
+      ingredients: item.ingredients || "",
+      price: item.price ?? "98",
+      isSignature,
       category: categoryTitle === "Sauce Options" ? "sauce" : undefined,
+      nutrition:
+        item.calories || item.protein || item.fats || item.carbs || item.vitaminC
+          ? {
+              calories: item.calories || "",
+              protein: item.protein || "",
+              fats: item.fats || "",
+              carbs: item.carbs || "",
+              vitC: item.vitaminC || "",
+            }
+          : undefined,
     });
   };
 

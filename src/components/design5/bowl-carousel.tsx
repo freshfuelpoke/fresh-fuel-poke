@@ -6,14 +6,23 @@ import {
   type DishDetails,
   DishModal,
 } from "@/components/restaurant/dish-modal";
-import {
-  buildSignatureDishDetails,
-  type SignatureMenuItem,
-  signatureBowlMetaByName,
-} from "@/components/restaurant/signature-bowls";
 
-export type Bowl = NonNullable<ReturnType<typeof buildSignatureDishDetails>> & {
+export type Bowl = DishDetails & {
   tags: readonly string[];
+};
+
+type MenuItem = {
+  readonly name: string;
+  readonly price?: string;
+  readonly image?: string | null;
+  readonly description?: string | null;
+  readonly ingredients?: string | null;
+  readonly calories?: string | null;
+  readonly protein?: string | null;
+  readonly fats?: string | null;
+  readonly carbs?: string | null;
+  readonly vitaminC?: string | null;
+  readonly tags?: string | null;
 };
 
 export function BowlCarousel({
@@ -21,17 +30,28 @@ export function BowlCarousel({
   items,
 }: {
   tone?: "light" | "dark";
-  items: readonly SignatureMenuItem[];
+  items: readonly MenuItem[];
 }) {
-  const bowls: Bowl[] = items.flatMap((item) => {
-    const signatureDish = buildSignatureDishDetails(item);
-    const meta = signatureBowlMetaByName[item.name];
-
-    if (!signatureDish || !meta) {
-      return [];
-    }
-
-    return [{ ...signatureDish, tags: meta.tags }];
+  const bowls: Bowl[] = items.map((item) => {
+    return {
+      name: item.name,
+      image: item.image || "",
+      description: item.description || "",
+      ingredients: item.ingredients || "",
+      price: item.price ?? "98",
+      isSignature: true,
+      nutrition:
+        item.calories || item.protein || item.fats || item.carbs || item.vitaminC
+          ? {
+              calories: item.calories || "",
+              protein: item.protein || "",
+              fats: item.fats || "",
+              carbs: item.carbs || "",
+              vitC: item.vitaminC || "",
+            }
+          : undefined,
+      tags: item.tags ? item.tags.split(",").map(t => t.trim()) : [],
+    };
   });
   const loopedBowls = [...bowls, ...bowls, ...bowls];
   const trackRef = useRef<HTMLDivElement>(null);

@@ -16,6 +16,14 @@ type Item = {
   name: string;
   price: string;
   image: string | null;
+  description?: string | null;
+  ingredients?: string | null;
+  calories?: string | null;
+  protein?: string | null;
+  fats?: string | null;
+  carbs?: string | null;
+  vitaminC?: string | null;
+  tags?: string | null;
   categoryId: number;
   displayOrder: number;
 };
@@ -129,6 +137,14 @@ export function MenuManager({
   const [modalImageUrl, setModalImageUrl] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [priceValue, setPriceValue] = useState("");
+  const [descriptionValue, setDescriptionValue] = useState("");
+  const [ingredientsValue, setIngredientsValue] = useState("");
+  const [caloriesValue, setCaloriesValue] = useState("");
+  const [proteinValue, setProteinValue] = useState("");
+  const [fatsValue, setFatsValue] = useState("");
+  const [carbsValue, setCarbsValue] = useState("");
+  const [vitaminCValue, setVitaminCValue] = useState("");
+  const [tagsValue, setTagsValue] = useState("");
   const [isPending, startTransition] = useTransition();
 
   const activeCategory = useMemo(
@@ -141,6 +157,14 @@ export function MenuManager({
       setNameValue("");
       setPriceValue("");
       setModalImageUrl("");
+      setDescriptionValue("");
+      setIngredientsValue("");
+      setCaloriesValue("");
+      setProteinValue("");
+      setFatsValue("");
+      setCarbsValue("");
+      setVitaminCValue("");
+      setTagsValue("");
       setFormError("");
       return;
     }
@@ -149,6 +173,14 @@ export function MenuManager({
       setNameValue(editorState.item.name);
       setPriceValue(editorState.item.price);
       setModalImageUrl(editorState.item.image ?? "");
+      setDescriptionValue(editorState.item.description ?? "");
+      setIngredientsValue(editorState.item.ingredients ?? "");
+      setCaloriesValue(editorState.item.calories ?? "");
+      setProteinValue(editorState.item.protein ?? "");
+      setFatsValue(editorState.item.fats ?? "");
+      setCarbsValue(editorState.item.carbs ?? "");
+      setVitaminCValue(editorState.item.vitaminC ?? "");
+      setTagsValue(editorState.item.tags ?? "");
       setFormError("");
       return;
     }
@@ -156,6 +188,14 @@ export function MenuManager({
     setNameValue("");
     setPriceValue("");
     setModalImageUrl("");
+    setDescriptionValue("");
+    setIngredientsValue("");
+    setCaloriesValue("");
+    setProteinValue("");
+    setFatsValue("");
+    setCarbsValue("");
+    setVitaminCValue("");
+    setTagsValue("");
     setFormError("");
   }, [editorState]);
 
@@ -217,6 +257,15 @@ export function MenuManager({
     formData.set("price", trimmedPrice);
     formData.set("image", trimmedImage);
 
+    formData.set("description", descriptionValue);
+    formData.set("ingredients", ingredientsValue);
+    formData.set("calories", caloriesValue);
+    formData.set("protein", proteinValue);
+    formData.set("fats", fatsValue);
+    formData.set("carbs", carbsValue);
+    formData.set("vitaminC", vitaminCValue);
+    formData.set("tags", tagsValue);
+
     if (editorState.mode === "create") {
       formData.set("categoryId", String(editorState.categoryId));
       startTransition(async () => {
@@ -240,6 +289,14 @@ export function MenuManager({
                       name: trimmedName,
                       price: trimmedPrice,
                       image: trimmedImage,
+                      description: descriptionValue,
+                      ingredients: ingredientsValue,
+                      calories: caloriesValue,
+                      protein: proteinValue,
+                      fats: fatsValue,
+                      carbs: carbsValue,
+                      vitaminC: vitaminCValue,
+                      tags: tagsValue,
                       displayOrder: category.items.length,
                     },
                   ],
@@ -273,6 +330,14 @@ export function MenuManager({
                         name: trimmedName,
                         price: trimmedPrice,
                         image: trimmedImage,
+                        description: descriptionValue,
+                        ingredients: ingredientsValue,
+                        calories: caloriesValue,
+                        protein: proteinValue,
+                        fats: fatsValue,
+                        carbs: carbsValue,
+                        vitaminC: vitaminCValue,
+                        tags: tagsValue,
                       }
                     : item,
                 ),
@@ -353,21 +418,7 @@ export function MenuManager({
                       {category.items.length !== 1 ? "s" : ""}
                     </p>
                   </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      openDeleteCategoryDialog(category.id, category.title)
-                    }
-                    disabled={isPending}
-                    aria-label={`Delete ${category.title}`}
-                    className={`rounded-md p-1 transition-colors disabled:opacity-40 ${
-                      openCatId === category.id
-                        ? "text-stone-400 hover:bg-white/10 hover:text-red-300"
-                        : "text-stone-300 hover:bg-stone-100 hover:text-red-400"
-                    }`}
-                  >
-                    <TrashIcon />
-                  </button>
+
                 </li>
               ))}
               {categories.length === 0 && (
@@ -588,6 +639,48 @@ export function MenuManager({
                   placeholder="98"
                   className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50"
                 />
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-stone-100">
+              <p className="mb-4 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400">
+                Optional Details (For Signature Bowls)
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 mb-4">
+                <div>
+                  <label htmlFor="menu-item-description" className="mb-1 block text-xs font-semibold text-stone-500">Key Benefits</label>
+                  <input id="menu-item-description" type="text" value={descriptionValue} onChange={(e) => setDescriptionValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50" placeholder="e.g. Brain Power, Heart Protection..." />
+                </div>
+                <div>
+                  <label htmlFor="menu-item-tags" className="mb-1 block text-xs font-semibold text-stone-500">Tags (comma separated)</label>
+                  <input id="menu-item-tags" type="text" value={tagsValue} onChange={(e) => setTagsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50" placeholder="e.g. Brain Food, Omega Rich" />
+                </div>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="menu-item-ingredients" className="mb-1 block text-xs font-semibold text-stone-500">Ingredients</label>
+                <textarea id="menu-item-ingredients" value={ingredientsValue} onChange={(e) => setIngredientsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50 min-h-[60px]" placeholder="e.g. Quinoa, Salmon, Avocado..." />
+              </div>
+              <div className="grid gap-4 sm:grid-cols-5">
+                <div>
+                  <label htmlFor="menu-item-calories" className="mb-1 block text-xs font-semibold text-stone-500">Calories</label>
+                  <input id="menu-item-calories" type="text" value={caloriesValue} onChange={(e) => setCaloriesValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="517.53" />
+                </div>
+                <div>
+                  <label htmlFor="menu-item-protein" className="mb-1 block text-xs font-semibold text-stone-500">Protein</label>
+                  <input id="menu-item-protein" type="text" value={proteinValue} onChange={(e) => setProteinValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="28.10" />
+                </div>
+                <div>
+                  <label htmlFor="menu-item-fats" className="mb-1 block text-xs font-semibold text-stone-500">Fats</label>
+                  <input id="menu-item-fats" type="text" value={fatsValue} onChange={(e) => setFatsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="35.19" />
+                </div>
+                <div>
+                  <label htmlFor="menu-item-carbs" className="mb-1 block text-xs font-semibold text-stone-500">Carbs</label>
+                  <input id="menu-item-carbs" type="text" value={carbsValue} onChange={(e) => setCarbsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="23.16" />
+                </div>
+                <div>
+                  <label htmlFor="menu-item-vitaminc" className="mb-1 block text-xs font-semibold text-stone-500">Vit C</label>
+                  <input id="menu-item-vitaminc" type="text" value={vitaminCValue} onChange={(e) => setVitaminCValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="70 mg" />
+                </div>
               </div>
             </div>
 

@@ -90,6 +90,14 @@ export const menuItems = sqliteTable("menu_items", {
   name: text("name").notNull(),
   price: text("price").notNull(),
   image: text("image"),
+  description: text("description"),
+  ingredients: text("ingredients"),
+  calories: text("calories"),
+  protein: text("protein"),
+  fats: text("fats"),
+  carbs: text("carbs"),
+  vitaminC: text("vitamin_c"),
+  tags: text("tags"),
   displayOrder: integer("display_order").notNull().default(0),
 });
 

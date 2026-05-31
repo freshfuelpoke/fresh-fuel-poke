@@ -241,16 +241,16 @@ const sauces: AddOn[] = [
 
 const NutritionTable = ({ nutrition, isRightAligned }: { nutrition: NutritionalInfo, isRightAligned: boolean }) => (
   <div className="mt-4 w-full sm:w-[300px] border-b-2 border-dotted border-[#cf3328] pb-1">
-    <div className={`grid grid-cols-[auto_auto] gap-x-4 gap-y-0 text-sm font-semibold text-[#cf3328] w-fit ${isRightAligned ? "ml-auto" : "mr-auto"}`}>
-      <span className={isRightAligned ? "text-right" : "text-left"}>Calories</span>
+    <div className={`grid grid-cols-[auto_auto] gap-x-4 gap-y-0 text-sm font-semibold text-[#cf3328] w-fit ${isRightAligned ? "mr-auto" : "ml-auto"}`}>
+      <span className={isRightAligned ? "text-left" : "text-right"}>Calories</span>
       <span className="text-right">{nutrition.calories}</span>
-      <span className={isRightAligned ? "text-right" : "text-left"}>Protein</span>
+      <span className={isRightAligned ? "text-left" : "text-right"}>Protein</span>
       <span className="text-right">{nutrition.protein}</span>
-      <span className={isRightAligned ? "text-right" : "text-left"}>Fats</span>
+      <span className={isRightAligned ? "text-left" : "text-right"}>Fats</span>
       <span className="text-right">{nutrition.fats}</span>
-      <span className={isRightAligned ? "text-right" : "text-left"}>Carbs</span>
+      <span className={isRightAligned ? "text-left" : "text-right"}>Carbs</span>
       <span className="text-right">{nutrition.carbs}</span>
-      <span className={isRightAligned ? "text-right" : "text-left"}>Vitamin C</span>
+      <span className={isRightAligned ? "text-left" : "text-right"}>Vitamin C</span>
       <span className="text-right">{nutrition.vitaminC}</span>
     </div>
   </div>

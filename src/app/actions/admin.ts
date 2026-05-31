@@ -453,6 +453,14 @@ export async function addMenuItem(formData: FormData) {
   const name = formData.get("name") as string;
   const price = formData.get("price") as string;
   const image = (formData.get("image") as string | null)?.trim() || null;
+  const description = (formData.get("description") as string | null)?.trim() || null;
+  const ingredients = (formData.get("ingredients") as string | null)?.trim() || null;
+  const calories = (formData.get("calories") as string | null)?.trim() || null;
+  const protein = (formData.get("protein") as string | null)?.trim() || null;
+  const fats = (formData.get("fats") as string | null)?.trim() || null;
+  const carbs = (formData.get("carbs") as string | null)?.trim() || null;
+  const vitaminC = (formData.get("vitaminC") as string | null)?.trim() || null;
+  const tags = (formData.get("tags") as string | null)?.trim() || null;
 
   if (!name || !price || !categoryId)
     return { error: "All fields are required." };
@@ -465,7 +473,21 @@ export async function addMenuItem(formData: FormData) {
     const nextOrder = (maxOrder?.m ?? -1) + 1;
     await db
       .insert(menuItems)
-      .values({ categoryId, name, price, image, displayOrder: nextOrder });
+      .values({
+        categoryId,
+        name,
+        price,
+        image,
+        description,
+        ingredients,
+        calories,
+        protein,
+        fats,
+        carbs,
+        vitaminC,
+        tags,
+        displayOrder: nextOrder,
+      });
     invalidateTag(CACHE_TAGS.menu);
     return { success: true };
   } catch {
@@ -499,6 +521,14 @@ export async function updateMenuItem(formData: FormData) {
   const name = formData.get("name") as string;
   const price = formData.get("price") as string;
   const image = (formData.get("image") as string | null)?.trim() || null;
+  const description = (formData.get("description") as string | null)?.trim() || null;
+  const ingredients = (formData.get("ingredients") as string | null)?.trim() || null;
+  const calories = (formData.get("calories") as string | null)?.trim() || null;
+  const protein = (formData.get("protein") as string | null)?.trim() || null;
+  const fats = (formData.get("fats") as string | null)?.trim() || null;
+  const carbs = (formData.get("carbs") as string | null)?.trim() || null;
+  const vitaminC = (formData.get("vitaminC") as string | null)?.trim() || null;
+  const tags = (formData.get("tags") as string | null)?.trim() || null;
 
   if (!id || !name || !price) {
     return { error: "Name and price are required." };
@@ -507,7 +537,19 @@ export async function updateMenuItem(formData: FormData) {
   try {
     await db
       .update(menuItems)
-      .set({ name, price, image })
+      .set({
+        name,
+        price,
+        image,
+        description,
+        ingredients,
+        calories,
+        protein,
+        fats,
+        carbs,
+        vitaminC,
+        tags,
+      })
       .where(eq(menuItems.id, id));
     invalidateTag(CACHE_TAGS.menu);
     return { success: true };
