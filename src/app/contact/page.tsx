@@ -14,7 +14,7 @@ export default async function ContactPage() {
     <main className="min-h-screen bg-white text-[#121212]">
       <SiteHeader menuCategories={menuCategories} logo={restaurantInfo.logo} />
 
-      <section className="relative pt-48 pb-24 px-8 md:px-16 lg:px-24 overflow-hidden">
+      <section className="relative h-[25vh] min-h-[200px] overflow-hidden">
         <Image
           src="https://utfs.io/f/f5g7m1aw2QJCdImS4sUXQ2g4zFsNfvVYqxiHanuLb8ZTktmB"
           alt="Fresh Fuel Poke restaurant"
@@ -22,25 +22,23 @@ export default async function ContactPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-        <div className="relative mx-auto custom-container">
-          <Reveal delay={80}>
-            <h1 className="font-serif text-5xl md:text-7xl mb-6 text-white">
-              Contact Us
-            </h1>
-            <p className="text-lg text-stone-200 max-w-2xl leading-relaxed">
-              Have a question about our menu, catering, or just want to say hi?
-              We'd love to hear from you. Reach out through any of the channels
-              below.
-            </p>
-          </Reveal>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </section>
 
-      <section className="px-6 py-16 md:px-12 md:py-24 lg:px-24">
-        <Reveal className="mx-auto max-w-4xl" delay={80}>
+      <section className="px-6 py-10 md:px-12 md:py-16 lg:px-24">
+        <Reveal className="mx-auto max-w-4xl" delay={40}>
           {/* Form Block */}
           <div className="bg-[#f9faf9] p-8 md:p-12 lg:px-16 lg:py-14">
+            <div className="mb-10 text-center md:text-left">
+              <h1 className="font-serif text-4xl md:text-6xl mb-4 text-stone-900">
+                Contact Us
+              </h1>
+              <p className="text-lg text-stone-600 max-w-2xl leading-relaxed mx-auto md:mx-0">
+                Have a question about our menu, catering, or just want to say hi?
+                We'd love to hear from you. Reach out through any of the channels
+                below.
+              </p>
+            </div>
             <ContactForm />
           </div>
 
