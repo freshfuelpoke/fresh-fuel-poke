@@ -89,17 +89,27 @@ function ModalFrame({
   description,
   onClose,
   isPending,
+  size = "md",
   children,
 }: {
   title: string;
   description: string;
   onClose: () => void;
   isPending?: boolean;
+  size?: "sm" | "md" | "lg" | "xl";
   children: React.ReactNode;
 }) {
+  const sizeClasses = {
+    sm: "max-w-sm",
+    md: "max-w-xl",
+    lg: "max-w-4xl",
+    xl: "max-w-6xl",
+  };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/55 p-4">
-      <div className="w-full max-w-xl rounded-[28px] border border-stone-200 bg-white shadow-2xl">
+      <div
+        className={`w-full ${sizeClasses[size]} rounded-[28px] border border-stone-200 bg-white shadow-2xl overflow-y-auto max-h-[95vh]`}
+      >
         <div className="flex items-start justify-between border-b border-stone-100 px-6 py-5">
           <div>
             <h3 className="text-xl font-semibold text-stone-900">{title}</h3>
@@ -418,7 +428,6 @@ export function MenuManager({
                       {category.items.length !== 1 ? "s" : ""}
                     </p>
                   </button>
-
                 </li>
               ))}
               {categories.length === 0 && (
@@ -553,139 +562,249 @@ export function MenuManager({
           }
           isPending={isPending}
           onClose={closeEditorModal}
+          size="lg"
         >
-          <div className="space-y-5">
-            <div>
-              <p className="mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400">
-                Item image
-              </p>
-              {modalImageUrl ? (
-                <div className="relative overflow-hidden rounded-2xl border border-stone-200 bg-stone-50">
-                  <div className="relative aspect-[4/3] w-full">
-                    <Image
-                      src={modalImageUrl}
-                      alt="Menu item preview"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 480px"
-                      className="object-cover"
+          <div className="grid gap-8 lg:grid-cols-2 p-6 md:p-8">
+            <div className="space-y-5">
+              <div>
+                <p className="mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400">
+                  Item image
+                </p>
+                {modalImageUrl ? (
+                  <div className="relative overflow-hidden rounded-2xl border border-stone-200 bg-stone-50">
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={modalImageUrl}
+                        alt="Menu item preview"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 480px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setModalImageUrl("")}
+                      className="absolute right-3 top-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-black"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ) : (
+                  <div className="rounded-2xl border-2 border-dashed border-stone-200 bg-stone-50 p-5">
+                    <UploadButton
+                      endpoint="menuImageUploader"
+                      onClientUploadComplete={(res) => {
+                        if (res?.[0]?.url) {
+                          setModalImageUrl(res[0].url);
+                          setFormError("");
+                          return;
+                        }
+                        setFormError(
+                          "Upload did not return a valid image URL.",
+                        );
+                      }}
+                      onUploadError={(error) => setFormError(error.message)}
+                      appearance={{
+                        button:
+                          "rounded-xl bg-stone-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-stone-700 ut-readying:bg-stone-500 ut-uploading:bg-stone-500",
+                        allowedContent: "hidden",
+                      }}
+                      content={{
+                        button: "Change image",
+                        allowedContent: null,
+                      }}
                     />
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setModalImageUrl("")}
-                    className="absolute right-3 top-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-black"
+                )}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-[1fr_140px]">
+                <div>
+                  <label
+                    htmlFor="menu-item-name"
+                    className="mb-1 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400"
                   >
-                    Remove
-                  </button>
-                </div>
-              ) : (
-                <div className="rounded-2xl border-2 border-dashed border-stone-200 bg-stone-50 p-5">
-                  <UploadButton
-                    endpoint="menuImageUploader"
-                    onClientUploadComplete={(res) => {
-                      if (res?.[0]?.url) {
-                        setModalImageUrl(res[0].url);
-                        setFormError("");
-                        return;
-                      }
-                      setFormError("Upload did not return a valid image URL.");
-                    }}
-                    onUploadError={(error) => setFormError(error.message)}
-                    appearance={{
-                      button:
-                        "rounded-xl bg-stone-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-stone-700 ut-readying:bg-stone-500 ut-uploading:bg-stone-500",
-                      allowedContent: "hidden",
-                    }}
-                    content={{
-                      button: "Change image",
-                      allowedContent: null,
-                    }}
+                    Name
+                  </label>
+                  <input
+                    id="menu-item-name"
+                    type="text"
+                    value={nameValue}
+                    onChange={(event) => setNameValue(event.target.value)}
+                    disabled={isPending}
+                    placeholder="e.g. Bliss Bowl"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50"
                   />
                 </div>
-              )}
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-[1fr_140px]">
-              <div>
-                <label
-                  htmlFor="menu-item-name"
-                  className="mb-1 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400"
-                >
-                  Name
-                </label>
-                <input
-                  id="menu-item-name"
-                  type="text"
-                  value={nameValue}
-                  onChange={(event) => setNameValue(event.target.value)}
-                  disabled={isPending}
-                  placeholder="e.g. Bliss Bowl"
-                  className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="menu-item-price"
-                  className="mb-1 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400"
-                >
-                  Price
-                </label>
-                <input
-                  id="menu-item-price"
-                  type="text"
-                  value={priceValue}
-                  onChange={(event) => setPriceValue(event.target.value)}
-                  disabled={isPending}
-                  placeholder="98"
-                  className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50"
-                />
-              </div>
-            </div>
-
-            <div className="pt-2 border-t border-stone-100">
-              <p className="mb-4 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400">
-                Optional Details (For Signature Bowls)
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2 mb-4">
                 <div>
-                  <label htmlFor="menu-item-description" className="mb-1 block text-xs font-semibold text-stone-500">Key Benefits</label>
-                  <input id="menu-item-description" type="text" value={descriptionValue} onChange={(e) => setDescriptionValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50" placeholder="e.g. Brain Power, Heart Protection..." />
+                  <label
+                    htmlFor="menu-item-price"
+                    className="mb-1 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400"
+                  >
+                    Price
+                  </label>
+                  <input
+                    id="menu-item-price"
+                    type="text"
+                    value={priceValue}
+                    onChange={(event) => setPriceValue(event.target.value)}
+                    disabled={isPending}
+                    placeholder="98"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-stone-100 lg:border-t-0 pt-6 lg:pt-0">
+              <p className="mb-4 block text-xs font-semibold uppercase tracking-[0.12em] text-stone-400">
+                Optional Details
+              </p>
+              <div className="flex flex-col gap-4 mb-4">
+                <div>
+                  <label
+                    htmlFor="menu-item-description"
+                    className="mb-1 block text-xs font-semibold text-stone-500"
+                  >
+                    Key Benefits
+                  </label>
+                  <input
+                    id="menu-item-description"
+                    type="text"
+                    value={descriptionValue}
+                    onChange={(e) => setDescriptionValue(e.target.value)}
+                    disabled={isPending}
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50"
+                    placeholder="e.g. Brain Power, Heart Protection..."
+                  />
                 </div>
                 <div>
-                  <label htmlFor="menu-item-tags" className="mb-1 block text-xs font-semibold text-stone-500">Tags (comma separated)</label>
-                  <input id="menu-item-tags" type="text" value={tagsValue} onChange={(e) => setTagsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50" placeholder="e.g. Brain Food, Omega Rich" />
+                  <label
+                    htmlFor="menu-item-tags"
+                    className="mb-1 block text-xs font-semibold text-stone-500"
+                  >
+                    Tags (comma separated)
+                  </label>
+                  <input
+                    id="menu-item-tags"
+                    type="text"
+                    value={tagsValue}
+                    onChange={(e) => setTagsValue(e.target.value)}
+                    disabled={isPending}
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50"
+                    placeholder="e.g. Brain Food, Omega Rich"
+                  />
                 </div>
               </div>
               <div className="mb-4">
-                <label htmlFor="menu-item-ingredients" className="mb-1 block text-xs font-semibold text-stone-500">Ingredients</label>
-                <textarea id="menu-item-ingredients" value={ingredientsValue} onChange={(e) => setIngredientsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50 min-h-[60px]" placeholder="e.g. Quinoa, Salmon, Avocado..." />
+                <label
+                  htmlFor="menu-item-ingredients"
+                  className="mb-1 block text-xs font-semibold text-stone-500"
+                >
+                  Ingredients
+                </label>
+                <textarea
+                  id="menu-item-ingredients"
+                  value={ingredientsValue}
+                  onChange={(e) => setIngredientsValue(e.target.value)}
+                  disabled={isPending}
+                  className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-900/20 disabled:opacity-50 min-h-[60px]"
+                  placeholder="e.g. Quinoa, Salmon, Avocado..."
+                />
               </div>
               <div className="grid gap-4 sm:grid-cols-5">
                 <div>
-                  <label htmlFor="menu-item-calories" className="mb-1 block text-xs font-semibold text-stone-500">Calories</label>
-                  <input id="menu-item-calories" type="text" value={caloriesValue} onChange={(e) => setCaloriesValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="517.53" />
+                  <label
+                    htmlFor="menu-item-calories"
+                    className="mb-1 block text-xs font-semibold text-stone-500"
+                  >
+                    Calories
+                  </label>
+                  <input
+                    id="menu-item-calories"
+                    type="text"
+                    value={caloriesValue}
+                    onChange={(e) => setCaloriesValue(e.target.value)}
+                    disabled={isPending}
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all"
+                    placeholder="517.53"
+                  />
                 </div>
                 <div>
-                  <label htmlFor="menu-item-protein" className="mb-1 block text-xs font-semibold text-stone-500">Protein</label>
-                  <input id="menu-item-protein" type="text" value={proteinValue} onChange={(e) => setProteinValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="28.10" />
+                  <label
+                    htmlFor="menu-item-protein"
+                    className="mb-1 block text-xs font-semibold text-stone-500"
+                  >
+                    Protein
+                  </label>
+                  <input
+                    id="menu-item-protein"
+                    type="text"
+                    value={proteinValue}
+                    onChange={(e) => setProteinValue(e.target.value)}
+                    disabled={isPending}
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all"
+                    placeholder="28.10"
+                  />
                 </div>
                 <div>
-                  <label htmlFor="menu-item-fats" className="mb-1 block text-xs font-semibold text-stone-500">Fats</label>
-                  <input id="menu-item-fats" type="text" value={fatsValue} onChange={(e) => setFatsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="35.19" />
+                  <label
+                    htmlFor="menu-item-fats"
+                    className="mb-1 block text-xs font-semibold text-stone-500"
+                  >
+                    Fats
+                  </label>
+                  <input
+                    id="menu-item-fats"
+                    type="text"
+                    value={fatsValue}
+                    onChange={(e) => setFatsValue(e.target.value)}
+                    disabled={isPending}
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all"
+                    placeholder="35.19"
+                  />
                 </div>
                 <div>
-                  <label htmlFor="menu-item-carbs" className="mb-1 block text-xs font-semibold text-stone-500">Carbs</label>
-                  <input id="menu-item-carbs" type="text" value={carbsValue} onChange={(e) => setCarbsValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="23.16" />
+                  <label
+                    htmlFor="menu-item-carbs"
+                    className="mb-1 block text-xs font-semibold text-stone-500"
+                  >
+                    Carbs
+                  </label>
+                  <input
+                    id="menu-item-carbs"
+                    type="text"
+                    value={carbsValue}
+                    onChange={(e) => setCarbsValue(e.target.value)}
+                    disabled={isPending}
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all"
+                    placeholder="23.16"
+                  />
                 </div>
                 <div>
-                  <label htmlFor="menu-item-vitaminc" className="mb-1 block text-xs font-semibold text-stone-500">Vit C</label>
-                  <input id="menu-item-vitaminc" type="text" value={vitaminCValue} onChange={(e) => setVitaminCValue(e.target.value)} disabled={isPending} className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all" placeholder="70 mg" />
+                  <label
+                    htmlFor="menu-item-vitaminc"
+                    className="mb-1 block text-xs font-semibold text-stone-500"
+                  >
+                    Vit C
+                  </label>
+                  <input
+                    id="menu-item-vitaminc"
+                    type="text"
+                    value={vitaminCValue}
+                    onChange={(e) => setVitaminCValue(e.target.value)}
+                    disabled={isPending}
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-sm text-stone-800 transition-all"
+                    placeholder="70 mg"
+                  />
                 </div>
               </div>
             </div>
+          </div>
 
+          <div className="border-t border-stone-100 px-6 py-5 bg-stone-50/50 rounded-b-[28px]">
             {formError && (
-              <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
+              <p className="mb-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
                 {formError}
               </p>
             )}

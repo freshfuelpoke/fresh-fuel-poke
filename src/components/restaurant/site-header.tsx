@@ -52,7 +52,11 @@ export function SiteHeader({
       isSignature,
       category: _categoryTitle === "Sauce Options" ? "sauce" : undefined,
       nutrition:
-        item.calories || item.protein || item.fats || item.carbs || item.vitaminC
+        item.calories ||
+        item.protein ||
+        item.fats ||
+        item.carbs ||
+        item.vitaminC
           ? {
               calories: item.calories || "",
               protein: item.protein || "",

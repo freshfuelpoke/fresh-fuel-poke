@@ -453,8 +453,10 @@ export async function addMenuItem(formData: FormData) {
   const name = formData.get("name") as string;
   const price = formData.get("price") as string;
   const image = (formData.get("image") as string | null)?.trim() || null;
-  const description = (formData.get("description") as string | null)?.trim() || null;
-  const ingredients = (formData.get("ingredients") as string | null)?.trim() || null;
+  const description =
+    (formData.get("description") as string | null)?.trim() || null;
+  const ingredients =
+    (formData.get("ingredients") as string | null)?.trim() || null;
   const calories = (formData.get("calories") as string | null)?.trim() || null;
   const protein = (formData.get("protein") as string | null)?.trim() || null;
   const fats = (formData.get("fats") as string | null)?.trim() || null;
@@ -471,23 +473,21 @@ export async function addMenuItem(formData: FormData) {
       .from(menuItems)
       .where(eq(menuItems.categoryId, categoryId));
     const nextOrder = (maxOrder?.m ?? -1) + 1;
-    await db
-      .insert(menuItems)
-      .values({
-        categoryId,
-        name,
-        price,
-        image,
-        description,
-        ingredients,
-        calories,
-        protein,
-        fats,
-        carbs,
-        vitaminC,
-        tags,
-        displayOrder: nextOrder,
-      });
+    await db.insert(menuItems).values({
+      categoryId,
+      name,
+      price,
+      image,
+      description,
+      ingredients,
+      calories,
+      protein,
+      fats,
+      carbs,
+      vitaminC,
+      tags,
+      displayOrder: nextOrder,
+    });
     invalidateTag(CACHE_TAGS.menu);
     return { success: true };
   } catch {
@@ -521,8 +521,10 @@ export async function updateMenuItem(formData: FormData) {
   const name = formData.get("name") as string;
   const price = formData.get("price") as string;
   const image = (formData.get("image") as string | null)?.trim() || null;
-  const description = (formData.get("description") as string | null)?.trim() || null;
-  const ingredients = (formData.get("ingredients") as string | null)?.trim() || null;
+  const description =
+    (formData.get("description") as string | null)?.trim() || null;
+  const ingredients =
+    (formData.get("ingredients") as string | null)?.trim() || null;
   const calories = (formData.get("calories") as string | null)?.trim() || null;
   const protein = (formData.get("protein") as string | null)?.trim() || null;
   const fats = (formData.get("fats") as string | null)?.trim() || null;

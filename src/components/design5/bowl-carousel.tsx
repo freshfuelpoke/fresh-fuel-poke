@@ -41,7 +41,11 @@ export function BowlCarousel({
       price: item.price ?? "98",
       isSignature: true,
       nutrition:
-        item.calories || item.protein || item.fats || item.carbs || item.vitaminC
+        item.calories ||
+        item.protein ||
+        item.fats ||
+        item.carbs ||
+        item.vitaminC
           ? {
               calories: item.calories || "",
               protein: item.protein || "",
@@ -50,7 +54,7 @@ export function BowlCarousel({
               vitC: item.vitaminC || "",
             }
           : undefined,
-      tags: item.tags ? item.tags.split(",").map(t => t.trim()) : [],
+      tags: item.tags ? item.tags.split(",").map((t) => t.trim()) : [],
     };
   });
   const loopedBowls = [...bowls, ...bowls, ...bowls];
